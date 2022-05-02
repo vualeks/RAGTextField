@@ -58,6 +58,13 @@ open class UnderlineView: UIView {
         }
     }
     
+    /// The width of both the background line in points.
+    @IBInspectable open var backgroundLineWidth: CGFloat = 1.0 {
+        didSet {
+            
+        }
+    }
+    
     /// The color of the background line.
     @IBInspectable open var backgroundLineColor: UIColor = .clear {
         didSet {
@@ -172,9 +179,7 @@ open class UnderlineView: UIView {
         // Cling to the bottom of the view
         underlineBackgroundView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
-        // Always be as high as the underline
-        let onePixel = 1.0 / UIScreen.main.scale
-        underlineBackgroundView.heightAnchor.constraint(equalToConstant: onePixel).isActive = true
+        underlineBackgroundView.heightAnchor.constraint(equalToConstant: backgroundLineWidth).isActive = true
     }
     
     /// Sets up the underline view. Sets properties and configures constraints.
