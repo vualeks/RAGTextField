@@ -602,9 +602,9 @@ open class RAGTextField: UITextField {
         
         let w = bounds.width - textPadding.left - textPadding.right
         let h = measureHintSize(availableWidth: w).height
-        let x = userInterfaceDirectionAwareTextPadding.left
+        let x = userInterfaceDirectionAwareTextPadding.left - 12
         
-        var y = bounds.height - h
+        var y = bounds.height - h + 2
         if [.textAndHint, .textAndPlaceholderAndHint].contains(textPaddingMode) {
             y -= textPadding.bottom
         }

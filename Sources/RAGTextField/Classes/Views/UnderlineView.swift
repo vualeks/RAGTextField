@@ -59,9 +59,9 @@ open class UnderlineView: UIView {
     }
     
     /// The width of both the background line in points.
-    @IBInspectable open var backgroundLineWidth: CGFloat = 1.0 {
+    @IBInspectable open var backgroundLineWidth: CGFloat = 2.0 {
         didSet {
-            
+            underlineBackgroundView.heightAnchor.constraint(equalToConstant: backgroundLineWidth).isActive = true
         }
     }
     
@@ -107,6 +107,9 @@ open class UnderlineView: UIView {
     
     /// Updated when `lineWidth` is changed.
     private var heightConstraint: NSLayoutConstraint?
+    
+    /// Updated when `lineWidth` is changed.
+    private var backgroundLineHeightConstraint: NSLayoutConstraint?
     
     /// If `true`, the foreground line is currently expanded.
     private var isExpanded = false
@@ -180,6 +183,8 @@ open class UnderlineView: UIView {
         underlineBackgroundView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
         underlineBackgroundView.heightAnchor.constraint(equalToConstant: backgroundLineWidth).isActive = true
+        
+        setNeedsUpdateConstraints()
     }
     
     /// Sets up the underline view. Sets properties and configures constraints.
